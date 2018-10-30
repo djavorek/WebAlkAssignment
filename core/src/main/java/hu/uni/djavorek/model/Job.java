@@ -1,19 +1,27 @@
 package hu.uni.djavorek.model;
 
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
+@Entity
 public class Job {
+
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private JobType type;
     private String city;
     private Integer wage;
     private String description;
-    private Collection<String> requirements;
+
+    @ElementCollection
+    private List<String> requirements;
 
     protected Job(){}
 
-    public Job(Long id, String name, JobType type, String city, Integer wage, String description, Collection<String> requirements) {
+    public Job(Long id, String name, JobType type, String city, Integer wage, String description, List<String> requirements) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -71,11 +79,11 @@ public class Job {
         this.description = description;
     }
 
-    public Collection<String> getRequirements() {
+    public List<String> getRequirements() {
         return requirements;
     }
 
-    public void setRequirements(Collection<String> requirements) {
+    public void setRequirements(List<String> requirements) {
         this.requirements = requirements;
     }
 }

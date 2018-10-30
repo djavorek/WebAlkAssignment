@@ -6,6 +6,6 @@ import hu.uni.djavorek.model.Job;
 import java.util.Collection;
 
 public interface OperatorService {
-    void AdvertiseJob(Job job);
+    void advertiseJob(Job job);
     Collection<Application> listApplications();
 }

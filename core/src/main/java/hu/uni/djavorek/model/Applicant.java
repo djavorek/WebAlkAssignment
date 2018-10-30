@@ -1,6 +1,14 @@
 package hu.uni.djavorek.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Applicant {
+
+    @Id
+    @GeneratedValue
     private Long id;
     private String firstname;
     private String lastname;

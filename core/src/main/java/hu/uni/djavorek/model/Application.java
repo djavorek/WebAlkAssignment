@@ -1,8 +1,15 @@
 package hu.uni.djavorek.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.GregorianCalendar;
 
+@Entity
 public class Application {
+
+    @Id
+    @GeneratedValue
     private Long id;
     private Long jobId;
     private Long applicantId;
