@@ -1,21 +1,20 @@
 package hu.uni.djavorek.model;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ApplicationFilter {
     private Long applicationId;
     private Long jobId;
-    private Long applicantId;
-    private GregorianCalendar createdAfter;
-    private GregorianCalendar createdBefore;
+    private Calendar createdAfter;
+    private Calendar createdBefore;
     private Boolean hasComment;
 
     public ApplicationFilter(){}
 
-    public ApplicationFilter(Long applicationid, Long jobId, Long applicantId, GregorianCalendar createdAfter, GregorianCalendar createdBefore, Boolean hasComment) {
+    public ApplicationFilter(Long applicationId, Long jobId, Calendar createdAfter, GregorianCalendar createdBefore, Boolean hasComment) {
         this.applicationId = applicationId;
         this.jobId = jobId;
-        this.applicantId = applicantId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.hasComment = hasComment;
@@ -25,8 +24,8 @@ public class ApplicationFilter {
         return applicationId;
     }
 
-    public ApplicationFilter setApplicationid(Long applicationid) {
-        this.applicationId = applicationid;
+    public ApplicationFilter setApplicationid(Long applicationId) {
+        this.applicationId = applicationId;
         return this;
     }
 
@@ -39,16 +38,7 @@ public class ApplicationFilter {
         return this;
     }
 
-    public Long getApplicantId() {
-        return applicantId;
-    }
-
-    public ApplicationFilter setApplicantId(Long applicantId) {
-        this.applicantId = applicantId;
-        return this;
-    }
-
-    public GregorianCalendar getCreatedAfter() {
+    public Calendar getCreatedAfter() {
         return createdAfter;
     }
 
@@ -57,7 +47,7 @@ public class ApplicationFilter {
         return this;
     }
 
-    public GregorianCalendar getCreatedBefore() {
+    public Calendar getCreatedBefore() {
         return createdBefore;
     }
 

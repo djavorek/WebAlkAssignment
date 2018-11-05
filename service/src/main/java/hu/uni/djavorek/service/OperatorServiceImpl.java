@@ -4,7 +4,6 @@ import hu.uni.djavorek.dao.ApplicationDao;
 import hu.uni.djavorek.dao.JobDao;
 import hu.uni.djavorek.model.Application;
 import hu.uni.djavorek.model.Job;
-import hu.uni.djavorek.model.JobType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +12,10 @@ import java.util.Collection;
 @Service
 public class OperatorServiceImpl implements OperatorService {
 
-    @Autowired JobDao jobDao;
-    @Autowired ApplicationDao applicationDao;
+    @Autowired
+    private JobDao jobDao;
+    @Autowired
+    private ApplicationDao applicationDao;
 
     @Override
     public void advertiseJob(Job job) {

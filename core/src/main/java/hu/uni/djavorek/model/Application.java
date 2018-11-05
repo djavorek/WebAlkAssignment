@@ -3,7 +3,7 @@ package hu.uni.djavorek.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 @Entity
 public class Application {
@@ -13,11 +13,11 @@ public class Application {
     private Long id;
     private Long jobId;
     private Long applicantId;
-    private GregorianCalendar creationDate;
+    private Calendar creationDate;
     private String comment;
     protected Application() {}
 
-    public Application(Long id, Long jobId, Long applicantId, GregorianCalendar creationDate, String comment) {
+    public Application(Long id, Long jobId, Long applicantId, Calendar creationDate, String comment) {
         this.id = id;
         this.jobId = jobId;
         this.applicantId = applicantId;
@@ -49,11 +49,11 @@ public class Application {
         this.applicantId = applicantId;
     }
 
-    public GregorianCalendar getCreationDate() {
+    public Calendar getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(GregorianCalendar creationDate) {
+    public void setCreationDate(Calendar creationDate) {
         this.creationDate = creationDate;
     }
 
