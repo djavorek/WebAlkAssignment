@@ -1,6 +1,7 @@
 package web.config;
 
 import hu.uni.djavorek.controller.OperatorController;
+import hu.uni.djavorek.controller.config.ControllerConfig;
 import hu.uni.djavorek.dao.config.DaoConfig;
 import hu.uni.djavorek.service.OperatorService;
 
@@ -15,14 +16,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @ComponentScan({"web.config", "hu.uni.djavorek"})
 @Configuration
-@Import({DaoConfig.class, ServiceConfig.class})
+@Import({DaoConfig.class, ServiceConfig.class, ControllerConfig.class})
 public class ApplicationConfig {
-
-    @Autowired
-    OperatorService operatorService;
-
-    @Bean
-    public OperatorController operatorController() {
-        return new OperatorController(operatorService);
-    }
 }

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/operator/")
 public class OperatorController {
@@ -21,7 +24,10 @@ public class OperatorController {
     @GetMapping("addJob")
     @ResponseBody
     public void addJob() {
-        Job dummyJob = new Job(null, "Dummy Seprés", JobType.MANUFACTURING, "Sorsod Borsod", 1000, "", null);
+        List<String> dummyReq = new ArrayList<>();
+        dummyReq.add("Kitartás");
+        dummyReq.add("3 év tapasztalat");
+        Job dummyJob = new Job(null, "Pénz lapátolás", JobType.ACCOUNTING, "Avas", 1000, "Fun, fun, fun", dummyReq);
         operatorService.advertiseJob(dummyJob);
     }
 }

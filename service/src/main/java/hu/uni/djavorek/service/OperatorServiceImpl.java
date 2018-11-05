@@ -1,5 +1,6 @@
 package hu.uni.djavorek.service;
 
+import hu.uni.djavorek.dao.ApplicationDao;
 import hu.uni.djavorek.dao.JobDao;
 import hu.uni.djavorek.model.Application;
 import hu.uni.djavorek.model.Job;
@@ -12,8 +13,8 @@ import java.util.Collection;
 @Service
 public class OperatorServiceImpl implements OperatorService {
 
-    @Autowired
-    JobDao jobDao;
+    @Autowired JobDao jobDao;
+    @Autowired ApplicationDao applicationDao;
 
     @Override
     public void advertiseJob(Job job) {
@@ -22,6 +23,6 @@ public class OperatorServiceImpl implements OperatorService {
 
     @Override
     public Collection<Application> listApplications() {
-        return null;
+        return applicationDao.findAll();
     }
 }

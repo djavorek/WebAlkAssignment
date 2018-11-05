@@ -1,7 +1,6 @@
 package hu.uni.djavorek.dao.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
-
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +16,6 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import javax.persistence.EntityManagerFactory;
 import java.util.Properties;
 
@@ -37,8 +35,10 @@ public class DaoConfig {
         boneCPDataSource.setJdbcUrl(environment.getProperty("jdbc.url"));
         boneCPDataSource.setUsername(environment.getProperty("jdbc.username"));
         boneCPDataSource.setPassword(environment.getProperty("jdbc.password"));
+
+        //Recommended default settings
         boneCPDataSource.setIdleConnectionTestPeriodInMinutes(60);
-        boneCPDataSource.setIdleMaxAgeInMinutes(420);
+        boneCPDataSource.setIdleMaxAgeInMinutes(240);
         boneCPDataSource.setMaxConnectionsPerPartition(30);
         boneCPDataSource.setMinConnectionsPerPartition(10);
         boneCPDataSource.setPartitionCount(3);
@@ -46,11 +46,6 @@ public class DaoConfig {
         boneCPDataSource.setStatementsCacheSize(100);
 
         return boneCPDataSource;
-    }
-
-    @Bean
-    public HibernateExceptionTranslator hibernateExceptionTranslator() {
-        return new HibernateExceptionTranslator();
     }
 
     @Bean
@@ -72,10 +67,8 @@ public class DaoConfig {
         properties.setProperty("hibernate.cache.use_second_level_cache", "true");
         properties.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.EhCacheRegionFactory");
         properties.setProperty("hibernate.cache.use_query_cache", "true");
-        properties.setProperty("hibernate.generate_statistics", "true");
 
         factory.setJpaProperties(properties);
-
         factory.afterPropertiesSet();
 
         return factory.getObject();
@@ -89,5 +82,11 @@ public class DaoConfig {
         txManager.setEntityManagerFactory(entityManagerFactory);
         txManager.setJpaDialect(jpaDialect);
         return txManager;
+    }
+
+    // To enable Spring exception translation mechanism
+    @Bean
+    public HibernateExceptionTranslator hibernateExceptionTranslator() {
+        return new HibernateExceptionTranslator();
     }
 }

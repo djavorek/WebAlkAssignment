@@ -3,7 +3,7 @@ package hu.uni.djavorek.model;
 import java.util.GregorianCalendar;
 
 public class ApplicationFilter {
-    private Long applicationid;
+    private Long applicationId;
     private Long jobId;
     private Long applicantId;
     private GregorianCalendar createdAfter;
@@ -13,7 +13,7 @@ public class ApplicationFilter {
     public ApplicationFilter(){}
 
     public ApplicationFilter(Long applicationid, Long jobId, Long applicantId, GregorianCalendar createdAfter, GregorianCalendar createdBefore, Boolean hasComment) {
-        this.applicationid = applicationid;
+        this.applicationId = applicationId;
         this.jobId = jobId;
         this.applicantId = applicantId;
         this.createdAfter = createdAfter;
@@ -22,11 +22,11 @@ public class ApplicationFilter {
     }
 
     public Long getApplicationid() {
-        return applicationid;
+        return applicationId;
     }
 
     public ApplicationFilter setApplicationid(Long applicationid) {
-        this.applicationid = applicationid;
+        this.applicationId = applicationid;
         return this;
     }
 
