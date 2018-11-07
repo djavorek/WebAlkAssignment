@@ -20,8 +20,7 @@ public class Job {
 
     protected Job(){}
 
-    public Job(Long id, String name, JobType type, String city, Integer wage, String description, List<String> requirements) {
-        this.id = id;
+    public Job(String name, JobType type, String city, Integer wage, String description, List<String> requirements) {
         this.name = name;
         this.type = type;
         this.city = city;

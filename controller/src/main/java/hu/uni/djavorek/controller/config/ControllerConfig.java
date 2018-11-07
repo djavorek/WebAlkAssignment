@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 public class ControllerConfig {
     @Autowired
-    OperatorService operatorService;
+    private OperatorService operatorService;
 
     @Bean
     public OperatorController operatorController() {

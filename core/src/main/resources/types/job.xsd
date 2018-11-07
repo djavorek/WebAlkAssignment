@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://djavorek.uni.hu/job"
+           targetNamespace="http://djavorek.uni.hu/job">
+
+    <xs:simpleType name="jobType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACCOUNTING"/>
+            <xs:enumeration value="SALES"/>
+            <xs:enumeration value="MANAGEMENT"/>
+            <xs:enumeration value="RESEARCH"/>
+            <xs:enumeration value="MANUFACTURING"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="jobWage">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="100"/>
+            <xs:maxInclusive value="20000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="jobRequirements">
+        <xs:sequence>
+            <xs:element name="requirement" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="job">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="tns:jobType"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="wage" type="tns:jobWage"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="requirements" type="tns:jobRequirements"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

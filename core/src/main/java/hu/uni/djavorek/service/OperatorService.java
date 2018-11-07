@@ -1,10 +1,11 @@
 package hu.uni.djavorek.service;
 
+import hu.uni.djavorek.dto.AdvertiseJobRequest;
+import hu.uni.djavorek.dto.AdvertiseJobResponse;
 import hu.uni.djavorek.model.Application;
-import hu.uni.djavorek.model.Job;
 import java.util.Collection;
 
 public interface OperatorService {
-    void advertiseJob(Job job);
+    AdvertiseJobResponse advertiseJob(AdvertiseJobRequest advertiseJobRequest);
     Collection<Application> listApplications();
 }

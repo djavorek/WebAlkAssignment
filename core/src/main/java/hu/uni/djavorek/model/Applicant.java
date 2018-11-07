@@ -17,8 +17,7 @@ public class Applicant {
 
     protected Applicant() {}
 
-    public Applicant(Long id, String firstname, String lastname, String email, String phonenumber) {
-        this.id = id;
+    public Applicant(String firstname, String lastname, String email, String phonenumber) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;

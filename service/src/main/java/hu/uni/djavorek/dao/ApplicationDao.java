@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ApplicationDao extends JpaRepository<Application, Long> {
 
-   //"SELECT * FROM Application WHERE Application.applicantId = :applicantId"
+    //"SELECT * FROM Application WHERE Application.applicantId = :applicantId"
     List<Application> findAllByApplicantId(Long applicantId);
 }

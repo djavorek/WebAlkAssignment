@@ -15,10 +15,10 @@ public class Application {
     private Long applicantId;
     private Calendar creationDate;
     private String comment;
+
     protected Application() {}
 
-    public Application(Long id, Long jobId, Long applicantId, Calendar creationDate, String comment) {
-        this.id = id;
+    public Application(Long jobId, Long applicantId, Calendar creationDate, String comment) {
         this.jobId = jobId;
         this.applicantId = applicantId;
         this.creationDate = creationDate;
