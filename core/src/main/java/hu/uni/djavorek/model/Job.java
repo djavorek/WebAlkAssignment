@@ -2,6 +2,7 @@ package hu.uni.djavorek.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Job {
@@ -15,7 +16,7 @@ public class Job {
     private Integer wage;
     private String description;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> requirements;
 
     protected Job(){}
@@ -83,5 +84,23 @@ public class Job {
 
     public void setRequirements(List<String> requirements) {
         this.requirements = requirements;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Job job = (Job) o;
+        return getName().equalsIgnoreCase(job.getName()) &&
+                getCity().equalsIgnoreCase(job.getCity()) &&
+                getWage().equals(job.getWage()) &&
+                getType().name().equals(job.getType().name()) &&
+                getDescription().equalsIgnoreCase(job.getDescription()) &&
+                getRequirements().size() == job.getRequirements().size();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getType(), getCity(), getWage(), getDescription(), getRequirements());
     }
 }

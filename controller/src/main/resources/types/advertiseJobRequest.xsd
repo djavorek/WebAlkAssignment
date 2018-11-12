@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<xs:schema targetNamespace="http://djavorek.uni.hu/advertiseJobRequest"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:job="http://djavorek.uni.hu/job"
-           xmlns:tns="http://djavorek.uni.hu/advertiseJobRequest"
-           targetNamespace="http://djavorek.uni.hu/advertiseJobRequest">
+           xmlns:tns="http://djavorek.uni.hu/advertiseJobRequest">
 
     <xs:import namespace="http://djavorek.uni.hu/job" schemaLocation="job.xsd"/>
 
@@ -12,6 +12,5 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:element name="request" type="tns:advertiseJobRequest"/>
-
+    <xs:element name="advertiseJobRequest" type="tns:advertiseJobRequest"/>
 </xs:schema>

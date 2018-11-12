@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="http://djavorek.uni.hu/listApplicationResponse"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://djavorek.uni.hu/listApplicationResponse"
+           xmlns:application="http://djavorek.uni.hu/application">
+
+    <xs:import namespace="http://djavorek.uni.hu/application" schemaLocation="application.xsd"/>
+
+    <xs:complexType name="applicationListModel">
+        <xs:sequence>
+            <xs:element name="application" type="application:application" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="listApplicationResponse">
+        <xs:sequence>
+            <xs:element name="model" type="tns:applicationListModel"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="listApplicationResponse" type="tns:listApplicationResponse"/>
+
+</xs:schema>

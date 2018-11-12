@@ -1,5 +1,7 @@
 package hu.uni.djavorek.model;
 
+import hu.uni.djavorek.model.exception.InvalidEmailAddressException;
+import org.apache.commons.validator.routines.EmailValidator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,10 +20,10 @@ public class Applicant {
     protected Applicant() {}
 
     public Applicant(String firstname, String lastname, String email, String phonenumber) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.phonenumber = phonenumber;
+        setFirstname(firstname);
+        setLastname(lastname);
+        setEmail(email);
+        setPhonenumber(phonenumber);
     }
 
     public Long getId() {
@@ -53,6 +55,10 @@ public class Applicant {
     }
 
     public void setEmail(String email) {
+        if(!EmailValidator.getInstance().isValid(email)) {
+            throw new InvalidEmailAddressException("The given email address is not valid: " + email);
+        }
+
         this.email = email;
     }
 

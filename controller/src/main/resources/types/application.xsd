@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="http://djavorek.uni.hu/application"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:job="http://djavorek.uni.hu/job"
+           xmlns:applicant="http://djavorek.uni.hu/applicant">
+
+    <xs:import namespace="http://djavorek.uni.hu/job" schemaLocation="job.xsd"/>
+    <xs:import namespace="http://djavorek.uni.hu/applicant" schemaLocation="applicant.xsd"/>
+
+    <xs:complexType name="application">
+        <xs:sequence>
+            <xs:element name="job" type="job:job"/>
+            <xs:element name="applicant" type="applicant:applicant"/>
+            <xs:element name="creationDate" type="xs:dateTime"/>
+            <xs:element name="comment" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

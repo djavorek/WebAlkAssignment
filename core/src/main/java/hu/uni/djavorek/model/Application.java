@@ -11,16 +11,16 @@ public class Application {
     @Id
     @GeneratedValue
     private Long id;
-    private Long jobId;
-    private Long applicantId;
+    private Job job;
+    private Applicant applicant;
     private Calendar creationDate;
     private String comment;
 
     protected Application() {}
 
-    public Application(Long jobId, Long applicantId, Calendar creationDate, String comment) {
-        this.jobId = jobId;
-        this.applicantId = applicantId;
+    public Application(Job job, Applicant applicant, Calendar creationDate, String comment) {
+        this.job = job;
+        this.applicant = applicant;
         this.creationDate = creationDate;
         this.comment = comment;
     }
@@ -33,20 +33,20 @@ public class Application {
         this.id = id;
     }
 
-    public Long getJobId() {
-        return jobId;
+    public Job getJob() {
+        return job;
     }
 
-    public void setJobId(Long jobId) {
-        this.jobId = jobId;
+    public void setJobId(Job job) {
+        this.job = job;
     }
 
-    public Long getApplicantId() {
-        return applicantId;
+    public Applicant getApplicant() {
+        return applicant;
     }
 
-    public void setApplicantId(Long applicantId) {
-        this.applicantId = applicantId;
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;
     }
 
     public Calendar getCreationDate() {

@@ -4,6 +4,8 @@ import hu.uni.djavorek.dao.ApplicationDao;
 import hu.uni.djavorek.model.Application;
 import hu.uni.djavorek.model.ApplicationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -13,7 +15,10 @@ public class WorkerServiceImpl implements WorkerService {
     private ApplicationDao applicationDao;
 
     @Override
-    public Collection<Application> searchApplications(Long applicantId, ApplicationFilter applicationFilter) {
+    public Collection<Application> searchApplications(Long applicantId, @Nullable ApplicationFilter applicationFilter) {
+        if(applicationFilter == null) {
+            applicationFilter = new ApplicationFilter();
+        }
         return filterApplications(applicationDao.findAllByApplicantId(applicantId), applicationFilter);
     }
 

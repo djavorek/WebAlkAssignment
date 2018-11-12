@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://djavorek.uni.hu/job"
-           targetNamespace="http://djavorek.uni.hu/job">
+<xs:schema targetNamespace="http://djavorek.uni.hu/job"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://djavorek.uni.hu/job">
 
     <xs:simpleType name="jobType">
         <xs:restriction base="xs:string">
