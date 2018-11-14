@@ -42,7 +42,7 @@ public class ApplicationFilter {
         return createdAfter;
     }
 
-    public ApplicationFilter setCreatedAfter(GregorianCalendar createdAfter) {
+    public ApplicationFilter setCreatedAfter(Calendar createdAfter) {
         this.createdAfter = createdAfter;
         return this;
     }
@@ -51,7 +51,7 @@ public class ApplicationFilter {
         return createdBefore;
     }
 
-    public ApplicationFilter setCreatedBefore(GregorianCalendar createdBefore) {
+    public ApplicationFilter setCreatedBefore(Calendar createdBefore) {
         this.createdBefore = createdBefore;
         return this;
     }

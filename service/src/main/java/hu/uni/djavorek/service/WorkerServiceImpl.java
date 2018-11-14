@@ -37,7 +37,7 @@ public class WorkerServiceImpl implements WorkerService {
         }
         if(filter.getJobId() != null) {
             for(Application application : applicationList) {
-                if(filter.getJobId() != application.getJobId()) {
+                if(filter.getJobId() != application.getJob().getId()) {
                     applicationList.remove(application);
                 }
             }

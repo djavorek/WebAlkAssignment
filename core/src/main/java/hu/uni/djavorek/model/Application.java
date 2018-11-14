@@ -1,8 +1,6 @@
 package hu.uni.djavorek.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
@@ -11,7 +9,11 @@ public class Application {
     @Id
     @GeneratedValue
     private Long id;
+
+    @ManyToOne
     private Job job;
+
+    @ManyToOne
     private Applicant applicant;
     private Calendar creationDate;
     private String comment;
