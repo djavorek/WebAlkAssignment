@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
 public class ControllerConfig {
+
     @Autowired
     private OperatorService operatorService;
 
@@ -21,6 +22,4 @@ public class ControllerConfig {
 
     @Bean
     public WorkerController workerController() {return  new WorkerController(workerService);}
-
-
 }
