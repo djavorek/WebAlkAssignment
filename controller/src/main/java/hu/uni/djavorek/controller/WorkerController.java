@@ -1,14 +1,13 @@
 package hu.uni.djavorek.controller;
 
-import hu.uni.djavorek.dto.ApplicationFilter;
-import hu.uni.djavorek.dto.SearchApplicationRequest;
+import hu.uni.djavorek.dto.ListApplicationsResponse;
 import hu.uni.djavorek.dto.SearchApplicationResponse;
 import hu.uni.djavorek.model.Application;
+import hu.uni.djavorek.model.ApplicationFilter;
 import hu.uni.djavorek.service.WorkerService;
 import hu.uni.djavorek.util.ApplicationFilterUnmarshaller;
 import hu.uni.djavorek.util.ApplicationListMarshaller;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -17,7 +16,6 @@ import java.util.Collection;
 @RequestMapping("/worker/")
 public class WorkerController {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(OperatorController.class);
     private WorkerService workerService;
 
     public WorkerController(WorkerService workerService) {
@@ -25,13 +23,32 @@ public class WorkerController {
     }
 
     @GetMapping("{applicantId}/searchApplications")
-    public SearchApplicationResponse filterApplication(@PathVariable("applicantId") Long applicantId, @RequestBody SearchApplicationRequest request) {
+    public SearchApplicationResponse searchApplications(@PathVariable("applicantId") Long applicantId,
+                                                       @RequestParam(value = "applicationId", required = false) String applicationId,
+                                                       @RequestParam(value = "jobId", required = false) String jobId,
+                                                       @RequestParam(value = "createdAfter", required = false) String createdAfter,
+                                                       @RequestParam(value = "createdBefore", required = false) String createdBefore,
+                                                       @RequestParam(value = "hasComment", required = false) String hasComment) {
         SearchApplicationResponse response = new SearchApplicationResponse();
 
-        ApplicationFilter filter = request.getFilter();
-        Collection<Application> applicationList = workerService.searchApplications(applicantId, ApplicationFilterUnmarshaller.unmarshal(filter));
+        ApplicationFilter filter = ApplicationFilterUnmarshaller.unmarshal(applicationId, jobId, createdAfter, createdBefore, hasComment);
+        Collection<Application> applicationList = workerService.searchApplications(applicantId, filter);
         response.setModel(ApplicationListMarshaller.marshal(applicationList));
 
         return response;
     }
+
+    @GetMapping("{applicantId}/listApplications")
+    public ListApplicationsResponse listApplications(@PathVariable("applicantId") Long applicantId) {
+        ListApplicationsResponse response = new ListApplicationsResponse();
+
+        Collection<Application> applicationList = workerService.listApplications(applicantId);
+        response.setModel(ApplicationListMarshaller.marshal(applicationList));
+
+        return response;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public void illegalArgument(){}
 }

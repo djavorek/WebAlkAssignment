@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class WorkerServiceImpl implements WorkerService {
@@ -29,44 +30,54 @@ public class WorkerServiceImpl implements WorkerService {
 
     private List<Application> filterApplications(List<Application> applicationList, ApplicationFilter filter) {
         if(filter.getApplicationid() != null) {
-            for(Application application : applicationList) {
+            Iterator<Application> iterator = applicationList.iterator();
+            while(iterator.hasNext()) {
+                Application application = iterator.next();
                 if(filter.getApplicationid() != application.getId()) {
-                    applicationList.remove(application);
+                    iterator.remove();
                 }
             }
         }
         if(filter.getJobId() != null) {
-            for(Application application : applicationList) {
+            Iterator<Application> iterator = applicationList.iterator();
+            while(iterator.hasNext()) {
+                Application application = iterator.next();
                 if(filter.getJobId() != application.getJob().getId()) {
-                    applicationList.remove(application);
+                    iterator.remove();
                 }
             }
         }
         if(filter.getHasComment() != null) {
-            for(Application application : applicationList) {
+            Iterator<Application> iterator = applicationList.iterator();
+            while(iterator.hasNext()) {
+                Application application = iterator.next();
                 if(filter.getHasComment() == true) {
                     if(application.getComment() == null || application.getComment().length() == 0) {
-                        applicationList.remove(application);
+                        iterator.remove();
                     }
                 }
                 else if(filter.getHasComment() == false) {
                     if(application.getComment() != null && application.getComment().length() > 0) {
-                        applicationList.remove(application);
+                        iterator.remove();
                     }
                 }
             }
         }
         if(filter.getCreatedAfter() != null) {
-            for (Application application : applicationList) {
+            Iterator<Application> iterator = applicationList.iterator();
+            while(iterator.hasNext()) {
+                Application application = iterator.next();
                 if (filter.getCreatedAfter().compareTo(application.getCreationDate()) > 0) {
-                    applicationList.remove(application);
+                    iterator.remove();
                 }
             }
         }
         if(filter.getCreatedBefore() != null) {
-            for(Application application : applicationList) {
+            Iterator<Application> iterator = applicationList.iterator();
+            while(iterator.hasNext()) {
+                Application application = iterator.next();
                 if(filter.getCreatedBefore().compareTo(application.getCreationDate()) < 0) {
-                    applicationList.remove(application);
+                    iterator.remove();
                 }
             }
         }

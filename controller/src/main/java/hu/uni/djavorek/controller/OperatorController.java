@@ -7,20 +7,14 @@ import hu.uni.djavorek.model.JobType;
 import hu.uni.djavorek.model.exception.JobAlreadyExistsException;
 import hu.uni.djavorek.service.OperatorService;
 import hu.uni.djavorek.util.ApplicationListMarshaller;
-import hu.uni.djavorek.util.CalendarConverter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
-import java.util.List;
 
 @RestController
 @RequestMapping("/operator/")
 public class OperatorController {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(OperatorController.class);
     private OperatorService operatorService;
 
     public OperatorController(OperatorService operatorService) {
@@ -32,7 +26,6 @@ public class OperatorController {
         hu.uni.djavorek.dto.Job requestedJob = request.getJob();
         Job jobToAdvertise = new Job(requestedJob.getName(), JobType.valueOf(requestedJob.getType().value()),
                 requestedJob.getCity(), requestedJob.getWage(), requestedJob.getDescription(), requestedJob.getRequirements().getRequirement());
-
 
         operatorService.advertiseJob(jobToAdvertise);
 
