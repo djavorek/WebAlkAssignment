@@ -7,6 +7,7 @@ import hu.uni.djavorek.model.JobType;
 import hu.uni.djavorek.model.exception.JobAlreadyExistsException;
 import hu.uni.djavorek.service.OperatorService;
 import hu.uni.djavorek.util.ApplicationListMarshaller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
@@ -15,6 +16,7 @@ import java.util.Collection;
 @RequestMapping("/operator/")
 public class OperatorController {
 
+    @Autowired
     private OperatorService operatorService;
 
     public OperatorController(OperatorService operatorService) {

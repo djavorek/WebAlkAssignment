@@ -7,6 +7,7 @@ import hu.uni.djavorek.model.ApplicationFilter;
 import hu.uni.djavorek.service.WorkerService;
 import hu.uni.djavorek.util.ApplicationFilterUnmarshaller;
 import hu.uni.djavorek.util.ApplicationListMarshaller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.util.Collection;
 @RequestMapping("/worker/")
 public class WorkerController {
 
+    @Autowired
     private WorkerService workerService;
 
     public WorkerController(WorkerService workerService) {

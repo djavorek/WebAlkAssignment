@@ -5,11 +5,13 @@ import hu.uni.djavorek.model.Application;
 import hu.uni.djavorek.model.ApplicationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+@Service
 public class WorkerServiceImpl implements WorkerService {
 
     @Autowired
