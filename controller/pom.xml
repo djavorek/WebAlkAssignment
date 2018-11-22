@@ -52,8 +52,9 @@
                     <!-- The package of generated sources -->
                     <packageName>hu.uni.djavorek.dto</packageName>
                     <sources>
-                        <source>/src/main/resources/types</source>
+                        <source>src/main/resources/types</source>
                     </sources>
+                    <encoding>${file.encoding}</encoding>
                 </configuration>
             </plugin>
         </plugins>
