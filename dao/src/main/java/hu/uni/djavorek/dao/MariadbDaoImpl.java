@@ -1,4 +1,4 @@
-package hu.uni.djavorek.dao.config;
+package hu.uni.djavorek.dao;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -23,10 +23,14 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @Configuration
-public class DaoConfig {
+public class MariadbDaoImpl {
+
+    private final Environment environment;
 
     @Autowired
-    Environment environment;
+    public MariadbDaoImpl(Environment environment) {
+        this.environment = environment;
+    }
 
     @Bean
     public BoneCPDataSource boneCPDataSource() {

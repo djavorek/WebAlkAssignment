@@ -24,6 +24,10 @@
             <artifactId>controller</artifactId>
         </dependency>
         <dependency>
+            <groupId>hu.uni.djavorek</groupId>
+            <artifactId>dao</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>

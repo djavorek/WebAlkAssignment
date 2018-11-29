@@ -5,17 +5,18 @@ import hu.uni.djavorek.model.Application;
 import hu.uni.djavorek.model.ApplicationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-@Service
 public class WorkerServiceImpl implements WorkerService {
 
+    private final ApplicationDao applicationDao;
+
     @Autowired
-    private ApplicationDao applicationDao;
+    public WorkerServiceImpl(ApplicationDao applicationDao) {
+        this.applicationDao = applicationDao;
+    }
 
     @Override
     public Collection<Application> searchApplications(Long applicantId, @Nullable ApplicationFilter applicationFilter) {
@@ -32,33 +33,21 @@ public class WorkerServiceImpl implements WorkerService {
 
     private List<Application> filterApplications(List<Application> applicationList, ApplicationFilter filter) {
         if(filter.getApplicationid() != null) {
-            Iterator<Application> iterator = applicationList.iterator();
-            while(iterator.hasNext()) {
-                Application application = iterator.next();
-                if(filter.getApplicationid() != application.getId()) {
-                    iterator.remove();
-                }
-            }
+            applicationList.removeIf(application -> filter.getApplicationid() != application.getId());
         }
         if(filter.getJobId() != null) {
-            Iterator<Application> iterator = applicationList.iterator();
-            while(iterator.hasNext()) {
-                Application application = iterator.next();
-                if(filter.getJobId() != application.getJob().getId()) {
-                    iterator.remove();
-                }
-            }
+            applicationList.removeIf(application -> filter.getJobId() != application.getJob().getId());
         }
         if(filter.getHasComment() != null) {
             Iterator<Application> iterator = applicationList.iterator();
             while(iterator.hasNext()) {
                 Application application = iterator.next();
-                if(filter.getHasComment() == true) {
+                if(filter.getHasComment()) {
                     if(application.getComment() == null || application.getComment().length() == 0) {
                         iterator.remove();
                     }
                 }
-                else if(filter.getHasComment() == false) {
+                else if(!filter.getHasComment()) {
                     if(application.getComment() != null && application.getComment().length() > 0) {
                         iterator.remove();
                     }
@@ -66,22 +55,10 @@ public class WorkerServiceImpl implements WorkerService {
             }
         }
         if(filter.getCreatedAfter() != null) {
-            Iterator<Application> iterator = applicationList.iterator();
-            while(iterator.hasNext()) {
-                Application application = iterator.next();
-                if (filter.getCreatedAfter().compareTo(application.getCreationDate()) > 0) {
-                    iterator.remove();
-                }
-            }
+            applicationList.removeIf(application -> filter.getCreatedAfter().compareTo(application.getCreationDate()) > 0);
         }
         if(filter.getCreatedBefore() != null) {
-            Iterator<Application> iterator = applicationList.iterator();
-            while(iterator.hasNext()) {
-                Application application = iterator.next();
-                if(filter.getCreatedBefore().compareTo(application.getCreationDate()) < 0) {
-                    iterator.remove();
-                }
-            }
+            applicationList.removeIf(application -> filter.getCreatedBefore().compareTo(application.getCreationDate()) < 0);
         }
 
         return applicationList;
