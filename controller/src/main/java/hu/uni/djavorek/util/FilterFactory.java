@@ -7,10 +7,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class ApplicationFilterUnmarshaller {
+public class FilterFactory {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
-    public static ApplicationFilter unmarshal(@Nullable String applicationId, @Nullable String jobId, @Nullable String createdAfter, @Nullable String createdBefore, @Nullable String hasComment) {
+    public static ApplicationFilter getApplicationFilter(@Nullable String applicationId, @Nullable String jobId, @Nullable String createdAfter, @Nullable String createdBefore, @Nullable String hasComment) {
 
         ApplicationFilter filter = new ApplicationFilter();
 

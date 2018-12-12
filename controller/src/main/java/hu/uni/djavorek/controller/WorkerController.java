@@ -5,7 +5,7 @@ import hu.uni.djavorek.dto.SearchApplicationResponse;
 import hu.uni.djavorek.model.Application;
 import hu.uni.djavorek.model.ApplicationFilter;
 import hu.uni.djavorek.service.WorkerService;
-import hu.uni.djavorek.util.ApplicationFilterUnmarshaller;
+import hu.uni.djavorek.util.FilterFactory;
 import hu.uni.djavorek.util.ApplicationListMarshaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +33,7 @@ public class WorkerController {
                                                        @RequestParam(value = "hasComment", required = false) String hasComment) {
         SearchApplicationResponse response = new SearchApplicationResponse();
 
-        ApplicationFilter filter = ApplicationFilterUnmarshaller.unmarshal(applicationId, jobId, createdAfter, createdBefore, hasComment);
+        ApplicationFilter filter = FilterFactory.getApplicationFilter(applicationId, jobId, createdAfter, createdBefore, hasComment);
         Collection<Application> applicationList = workerService.searchApplications(applicantId, filter);
         response.setModel(ApplicationListMarshaller.marshal(applicationList));
 
