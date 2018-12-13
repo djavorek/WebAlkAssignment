@@ -1,22 +1,23 @@
 package hu.uni.djavorek.controller;
 
-import hu.uni.djavorek.dto.*;
+import hu.uni.djavorek.dto.AdvertiseJobRequest;
+import hu.uni.djavorek.dto.AdvertiseJobResponse;
+import hu.uni.djavorek.dto.ListApplicationResponse;
 import hu.uni.djavorek.model.Application;
 import hu.uni.djavorek.model.Job;
 import hu.uni.djavorek.model.JobType;
 import hu.uni.djavorek.model.exception.JobAlreadyExistsException;
 import hu.uni.djavorek.service.OperatorService;
 import hu.uni.djavorek.util.ApplicationListMarshaller;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Collection;
 
 @RestController
 @RequestMapping("/operator/")
 public class OperatorController {
 
-    @Autowired
     private OperatorService operatorService;
 
     public OperatorController(OperatorService operatorService) {
@@ -48,9 +49,11 @@ public class OperatorController {
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(JobAlreadyExistsException.class)
-    public void alreadyExistingJob() {}
+    public void alreadyExistingJob() {
+    }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(IllegalStateException.class)
-    public void illegalState(){}
+    public void illegalState() {
+    }
 }

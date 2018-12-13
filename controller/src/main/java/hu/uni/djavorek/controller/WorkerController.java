@@ -5,9 +5,8 @@ import hu.uni.djavorek.dto.SearchApplicationResponse;
 import hu.uni.djavorek.model.Application;
 import hu.uni.djavorek.model.ApplicationFilter;
 import hu.uni.djavorek.service.WorkerService;
-import hu.uni.djavorek.util.FilterFactory;
 import hu.uni.djavorek.util.ApplicationListMarshaller;
-import org.springframework.beans.factory.annotation.Autowired;
+import hu.uni.djavorek.util.FilterFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,6 @@ import java.util.Collection;
 @RequestMapping("/worker/")
 public class WorkerController {
 
-    @Autowired
     private WorkerService workerService;
 
     public WorkerController(WorkerService workerService) {
@@ -26,11 +24,11 @@ public class WorkerController {
 
     @GetMapping("{applicantId}/searchApplications")
     public SearchApplicationResponse searchApplications(@PathVariable("applicantId") Long applicantId,
-                                                       @RequestParam(value = "applicationId", required = false) String applicationId,
-                                                       @RequestParam(value = "jobId", required = false) String jobId,
-                                                       @RequestParam(value = "createdAfter", required = false) String createdAfter,
-                                                       @RequestParam(value = "createdBefore", required = false) String createdBefore,
-                                                       @RequestParam(value = "hasComment", required = false) String hasComment) {
+                                                        @RequestParam(value = "applicationId", required = false) String applicationId,
+                                                        @RequestParam(value = "jobId", required = false) String jobId,
+                                                        @RequestParam(value = "createdAfter", required = false) String createdAfter,
+                                                        @RequestParam(value = "createdBefore", required = false) String createdBefore,
+                                                        @RequestParam(value = "hasComment", required = false) String hasComment) {
         SearchApplicationResponse response = new SearchApplicationResponse();
 
         ApplicationFilter filter = FilterFactory.getApplicationFilter(applicationId, jobId, createdAfter, createdBefore, hasComment);
@@ -52,5 +50,6 @@ public class WorkerController {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException.class)
-    public void illegalArgument(){}
+    public void illegalArgument() {
+    }
 }
